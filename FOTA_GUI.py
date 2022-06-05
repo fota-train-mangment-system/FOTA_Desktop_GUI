@@ -84,6 +84,7 @@ def mainframe():
         #     Label(mainFrame, text='Hi').grid(row=10, column=2)
         # if not buttonClicked:
         #     buttonClicked = True
+        print("Elhadidi")
         try:
             with FTP(Actual_host) as ftp:
                 ftp.connect(host=Actual_host, port=21)
