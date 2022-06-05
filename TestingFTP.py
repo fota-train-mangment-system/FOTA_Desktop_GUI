@@ -19,12 +19,6 @@ def open_file():
     return file.name
 
 
-with open('mytest.txt', 'wb') as f:
-    with FTP(Actual_host) as ftp:
-        try:
-            ftp.connect(host=Actual_host, port=21)
-            ftp.retrbinary('RETR %s' % "test.txt", f.write)
-
     # Upload to FTP server
     # filename = open_file()
     # with open(filename, 'rb') as f:

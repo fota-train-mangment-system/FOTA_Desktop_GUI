@@ -84,7 +84,7 @@ def mainframe():
         #     Label(mainFrame, text='Hi').grid(row=10, column=2)
         # if not buttonClicked:
         #     buttonClicked = True
-        print("Elhadidi")
+
         try:
             with FTP(Actual_host) as ftp:
                 ftp.connect(host=Actual_host, port=21)
@@ -105,7 +105,7 @@ def mainframe():
                     ftp.connect(host=Actual_host, port=21)
                     ftp.login(user=Actual_username, passwd=Actual_password)
                     ftp.encoding = "utf-8"
-                    print(len(f.read()))
+                    # print(f.read())
                     # ftp.cwd("/Main_Directory")
                     uploadfile = listbox_serverdir.get(ANCHOR)
                     ftpResponseMessage = ftp.storbinary(f'STOR {uploadfile}', f)
@@ -113,7 +113,6 @@ def mainframe():
                     l1.grid(row=1, column=2)  # todo 2->3
                     print(ftpResponseMessage)
                     print(ftp.size(uploadfile))
-                    f.close()
                     popup_UploadDone()
                     displayDir()
         except ftplib.all_errors as e:
@@ -122,7 +121,7 @@ def mainframe():
     def download():
         # try:
         filename = open_file()
-        with open(filename, 'rb') as f:
+        with open(filename, 'wb') as f:
             with FTP(Actual_host) as ftp:
                 ftp.connect(host=Actual_host, port=21)
                 ftp.login(user=Actual_username, passwd=Actual_password)
@@ -135,6 +134,7 @@ def mainframe():
                 displayDir()
 
     def displayDir():
+        # todo : refresh the displayDir after every operation
         listbox_serverdir.insert(0, "--------------------------------------------")
         with FTP(Actual_host) as ftp:
             ftp.connect(host=Actual_host, port=21)
